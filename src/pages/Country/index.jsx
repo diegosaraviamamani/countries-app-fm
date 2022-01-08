@@ -6,15 +6,14 @@ import './index.css';
 function Country() {
   const params = useParams()
   const navigate = useNavigate()
-  
+
   const [country, setCountry] = useState({})
   useEffect(() => {
     fetch(`https://restcountries.com/v2/alpha/${params.id}`)
       .then((response) => response.json())
       .then((data) => setCountry(data))
       .catch((error) => console.log(error))
-  }, [])
-  console.log(country);
+  }, [params.id])
 
   return (
     <div className='wrapper'>
