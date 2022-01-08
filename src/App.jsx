@@ -1,25 +1,13 @@
-import { useState, useEffect } from 'react'
 import './App.css';
-import { Header, CountryCard } from './components'
+import routeList from './router'
+import { useRoutes } from 'react-router-dom';
 
-function App() {
-  const [countries, setCountries] = useState([])
-
-  useEffect(() => {
-    fetch('https://restcountries.com/v2/all')
-      .then((response) => response.json())
-      .then((data) => setCountries(data))
-      .catch((error) => console.log(error))
-  }, [])
-
+const App = () => {
   return (
-    <div className='wrapper'>
-      <Header />
-      <div className='countries-list'>
-        {countries.map((country) => <CountryCard key={country.name} {...country} />)}
-      </div>
+    <div>
+      {useRoutes(routeList)}
     </div>
-  );
+  )
 }
 
 export default App;
